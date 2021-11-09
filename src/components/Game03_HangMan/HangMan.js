@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import Header from './Pages/Header';
 import Figure from './Pages/Figure';
@@ -8,7 +8,7 @@ import Keyboards from './Pages/Keyboards';
 
 import { WORDS } from './Pages/helper';
 
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import './HangManStyled.css';
 
@@ -24,12 +24,9 @@ const Main = () => {
   return (
     <Container className='container'>
       <Header />
-
       <Figure />
-      {/* <WrongLetter /> */}
-      {console.log(selectedWord)}
+      <WrongLetter />
       <Word selectedWord={selectedWord} correctLetters={correctLetters} />
-
       <Keyboards word={selectedWord} />
     </Container>
   )
