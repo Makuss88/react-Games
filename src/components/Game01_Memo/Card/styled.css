@@ -1,0 +1,8 @@
+.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.is-inactive {
+  opacity: 0;
+  display: none;
+}
