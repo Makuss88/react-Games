@@ -27,11 +27,11 @@ export const CardBack = styled(CardStyle)`
   transform: rotateY(180deg);
 `;
 
-export const Flipped = styled(CardStyle)`
-  transform: rotateY(180deg);
-`;
+// export const Flipped = styled(CardStyle)`
+//   transform: rotateY(180deg);
+// `;
 
-export const Inactive = styled.div`
-  opacity: 0;
-  cursor: default;
-`;
+// export const Inactive = styled.div`
+//   opacity: 0;
+//   cursor: default;
+// `;

@@ -19,6 +19,7 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
         "is-inactive": isInactive,
       })}
       onClick={handleClick}
+      key={index}
     >
       <CardBack>
         <CardImg src={card.image} alt="frontpic" />

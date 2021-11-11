@@ -99,7 +99,7 @@
   margin: 0;
 }
 
-.notification-container.show {
+.notification-container .show {
   transform: translateY(-50px);
 }
 

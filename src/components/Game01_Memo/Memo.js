@@ -33,7 +33,7 @@ const Main = () => {
   const [openCards, setOpenCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState({});
   const [moves, setMoves] = useState(0);
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
   const [bestScore, setBestScore] = useState(
     JSON.parse(localStorage.getItem("bestScore")) || Number.POSITIVE_INFINITY
@@ -103,14 +103,14 @@ const Main = () => {
     setCards(shuffleCards(uniqueCardsArray.concat(uniqueCardsArray)));
     setShouldDisableAllCards(false);
     setMatchedCards({});
-    setShowModal(false);
+    // setShowModal(false);
     setOpenCards([]);
     setMoves(0);
   };
 
   const checkCompletion = () => {
     if (Object.keys(matchedCards).length === uniqueCardsArray.length) {
-      setShowModal(true);
+      // setShowModal(true);
       const highScore = Math.min(moves, bestScore);
       setBestScore(highScore);
       localStorage.setItem("bestScore", highScore);
@@ -124,6 +124,7 @@ const Main = () => {
         bestScore={bestScore}
         handleRestart={handleRestart}
       />
+      {console.log(Object.keys(matchedCards).length)}
       <Row>
         {cards.map((card, index) => {
           return (

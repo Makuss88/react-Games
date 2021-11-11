@@ -4,5 +4,5 @@
 
 .is-inactive {
   opacity: 0;
-  display: none;
+  visibility: hidden;
 }
