@@ -5,17 +5,11 @@
   stroke-linecap: round;
 }
 
-.figure-part {
-  display: none;
-}
-
 .wrong-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
   display: flex;
   flex-direction: column;
-  text-align: right;
+  text-align: center;
+  font-size: 40px;
 }
 
 .wrong-container p {
@@ -28,10 +22,13 @@
 
 .word {
   display: flex;
-  position: absolute;
-  bottom: 150px;
-  left: 50%;
-  transform: translateX(-50%);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-change {
+  display: flex;
 }
 
 .letter {
@@ -133,4 +130,14 @@
 
 .text {
   color: white;
+}
+
+.red {
+  background: red;
+  pointer-events: none;
+}
+
+.green {
+  background: green;
+  pointer-events: none;
 }

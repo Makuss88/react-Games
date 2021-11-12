@@ -103,32 +103,4 @@ export const WORDS = [
   "Widget",
   "Window",
   "Wireless",
-]
-
-
-export function showNotification(setter) {
-  setter(true);
-  setTimeout(() => {
-    setter(false);
-  }, 2000);
-}
-
-export function checkWin(correct, wrong, word) {
-  let status = 'win';
-
-  // Check for win
-  word.split('').forEach(letter => {
-    if (!correct.includes(letter)) {
-      status = '';
-    }
-  });
-
-  console.log("correct ", correct);
-  console.log("wrong ", wrong);
-  console.log("word ", word);
-
-  // Check for lose
-  if (wrong.length >= 6) status = 'lose';
-  // console.log(status);
-  return status
-}
+];

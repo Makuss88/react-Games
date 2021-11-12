@@ -5,8 +5,7 @@ import { Container } from 'react-bootstrap'
 const Header = () => {
   return (
     <Container>
-      <h1> HANGMAN! </h1>
-      <h2 className="text"> Put the leeter in good position </h2>
+      <h1> HANGMAN </h1>
     </Container>
   )
 }

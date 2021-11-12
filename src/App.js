@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { Container, Row } from 'react-bootstrap'
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Switch, Route } from "react-router-dom";
-
 
 import Header from './components/mainPages/Header/Header';
 import Memo from './components/Game01_Memo/Memo'
@@ -20,7 +17,7 @@ const App = () => {
         <Route path="/memo" component={Memo} />
         <Route path="/slider" component={Slider} />
         <Route path="/hangman" component={HangMan} />
-        <Route path="/home" component={Home} />
+        <Route path="/home" extend component={Home} />
       </Switch>
     </div>
   );

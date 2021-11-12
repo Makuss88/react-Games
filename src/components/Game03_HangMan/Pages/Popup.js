@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react'
-import { checkWin } from './helper'
 
 const Popup = ({ correctLetters, wrongLetters, selectedWord, setPlayable, playAgain }) => {
 
   let finalMessage = '';
   let finalMessageRevealWord = '';
   let playable = true;
+  let changeWordToSet = new Set(selectedWord);
 
-  console.log(checkWin(correctLetters, wrongLetters, selectedWord))
-  
-  useEffect(() => {
-    checkWin(correctLetters, wrongLetters, selectedWord)
-  })
-
-  if (checkWin(correctLetters, wrongLetters, selectedWord) === "win") {
+  if (changeWordToSet.size === correctLetters.length - 1) {
     finalMessage = "HURRAY!! YOU WON! :)"
     playable = false;
-  } else if (checkWin(correctLetters, correctLetters, selectedWord) === "lose") {
+  } else if (wrongLetters.length >= 7) {
     finalMessage = "OMG, are you looser... :/"
     finalMessageRevealWord = `This magicial word was: ${selectedWord} `;
     playable = false;
