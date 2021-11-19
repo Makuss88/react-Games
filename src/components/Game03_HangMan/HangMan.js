@@ -7,10 +7,9 @@ import Figure from './Pages/Figure';
 import Word from './Pages/Word';
 import Popup from './Pages/Popup';
 import WrongLetters from './Pages/WrongLetters';
-import Keyboards from './Pages/Keyboards';
+import Letter from './Pages/Letter';
 
-import { WORDS } from './Pages/helper';
-
+import { WORDS, ALPHABET } from './Pages/helper';
 
 import './HangManStyled.css';
 
@@ -21,41 +20,49 @@ const Main = () => {
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const [oneKey, setOneKey] = useState('');
-  const [styleKey, setStyleKey] = useState("key");
+  const [color, setColor] = useState('')
 
-  const putLetter = useCallback((letter) => {
+
+
+  const letterHandle = useCallback((key) => {
+    let letter = key.toLowerCase()
+    console.log(letter)
+
     if (selectedWord.includes(letter)) {
       if (!correctLetters.includes(letter)) {
         setCorrectLetters(currentLetters => [...currentLetters, letter]);
       }
+      // setColor('green')
+      return;
     } else {
       if (!wrongLetters.includes(letter)) {
         setWrongLetters(currentLetters => [...currentLetters, letter]);
       }
+      // setColor('red')
+      return;
     }
   }, [correctLetters, wrongLetters]);
 
-  putLetter(oneKey);
+  letterHandle(oneKey);
 
   useEffect(() => {
     const handleKeydown = event => {
       const { key, keyCode } = event;
       if (playable && keyCode >= 65 && keyCode <= 90) {
         const letter = key.toLowerCase();
-        putLetter(letter);
+        letterHandle(letter);
       }
     }
     window.addEventListener('keydown', handleKeydown);
 
     return () => window.removeEventListener('keydown', handleKeydown);
-  }, [correctLetters, wrongLetters, playable, putLetter]);
+  }, [correctLetters, wrongLetters, playable, letterHandle]);
 
   function playAgain() {
     setPlayable(true);
     setCorrectLetters([]);
     setWrongLetters([]);
     setOneKey('');
-    setStyleKey("key");
 
     const random = Math.floor(Math.random() * WORDS.length);
     selectedWord = WORDS[random].toLowerCase();
@@ -69,12 +76,18 @@ const Main = () => {
         <Col sm={8}><Word selectedWord={selectedWord} correctLetters={correctLetters} /></Col>
       </Row>
       <Row>
-        <Col sm={4}> <Keyboards
-          setOneKey={setOneKey}
-          selectedWord={selectedWord}
-          styleKey={styleKey}
-          setStyleKey={setStyleKey}
-        /></Col>
+        <Col sm={4}>
+          <div className="keyboard">
+            {ALPHABET.map((letter) =>
+              <Letter
+                letter={letter}
+                letterHandle={letterHandle}
+                key={letter}
+                color={color}
+              />
+            )}
+          </div>
+        </Col>
         <Col sm={8}> <WrongLetters wrongLetters={wrongLetters} /> </Col>
       </Row>
       <Popup
