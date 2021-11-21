@@ -19,20 +19,16 @@ const Main = () => {
   const [playable, setPlayable] = useState(true);
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
-  const [oneKey, setOneKey] = useState('');
   const [color, setColor] = useState('')
-
 
 
   const letterHandle = useCallback((key) => {
     let letter = key.toLowerCase()
-    console.log(letter)
-
     if (selectedWord.includes(letter)) {
       if (!correctLetters.includes(letter)) {
         setCorrectLetters(currentLetters => [...currentLetters, letter]);
+
       }
-      // setColor('green')
       return;
     } else {
       if (!wrongLetters.includes(letter)) {
@@ -43,14 +39,12 @@ const Main = () => {
     }
   }, [correctLetters, wrongLetters]);
 
-  letterHandle(oneKey);
-
   useEffect(() => {
     const handleKeydown = event => {
       const { key, keyCode } = event;
       if (playable && keyCode >= 65 && keyCode <= 90) {
-        const letter = key.toLowerCase();
-        letterHandle(letter);
+        // const letter = key;
+        letterHandle(key);
       }
     }
     window.addEventListener('keydown', handleKeydown);
@@ -62,7 +56,7 @@ const Main = () => {
     setPlayable(true);
     setCorrectLetters([]);
     setWrongLetters([]);
-    setOneKey('');
+    setColor('')
 
     const random = Math.floor(Math.random() * WORDS.length);
     selectedWord = WORDS[random].toLowerCase();
@@ -78,12 +72,13 @@ const Main = () => {
       <Row>
         <Col sm={4}>
           <div className="keyboard">
-            {ALPHABET.map((letter) =>
+            {ALPHABET.map((letter, index) =>
               <Letter
+                key={index}
                 letter={letter}
                 letterHandle={letterHandle}
-                key={letter}
                 color={color}
+
               />
             )}
           </div>
@@ -97,7 +92,6 @@ const Main = () => {
         setPlayable={setPlayable}
         playAgain={playAgain}
       />
-      {console.log(selectedWord)}
       <Button variant="warning" onClick={playAgain}>One Again?? Restart??</Button>
     </Container>
   )

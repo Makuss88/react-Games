@@ -21,7 +21,7 @@ const Header = () => {
         <NavLink to="/hangman" className='nav-link'>HANGMAN</NavLink>
       </Nav.Item>
       <Nav.Item>
-        <NavLink to="/dupa" className='nav-link'>TIC_TAK_TOE</NavLink>
+        <NavLink to="/tictactoe" className='nav-link'>TIC_TAK_TOE</NavLink>
       </Nav.Item>
     </Nav>
   )

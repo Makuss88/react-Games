@@ -7,7 +7,7 @@ const Popup = ({ correctLetters, wrongLetters, selectedWord, setPlayable, playAg
   let playable = true;
   let changeWordToSet = new Set(selectedWord);
 
-  if (changeWordToSet.size === correctLetters.length - 1) {
+  if (changeWordToSet.size === correctLetters.length) {
     finalMessage = "HURRAY!! YOU WON! :)"
     playable = false;
   } else if (wrongLetters.length >= 7) {
