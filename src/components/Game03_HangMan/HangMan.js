@@ -19,22 +19,19 @@ const Main = () => {
   const [playable, setPlayable] = useState(true);
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
-  const [color, setColor] = useState('')
-
 
   const letterHandle = useCallback((key) => {
     let letter = key.toLowerCase()
+
     if (selectedWord.includes(letter)) {
       if (!correctLetters.includes(letter)) {
         setCorrectLetters(currentLetters => [...currentLetters, letter]);
-
       }
       return;
     } else {
       if (!wrongLetters.includes(letter)) {
         setWrongLetters(currentLetters => [...currentLetters, letter]);
       }
-      // setColor('red')
       return;
     }
   }, [correctLetters, wrongLetters]);
@@ -43,7 +40,6 @@ const Main = () => {
     const handleKeydown = event => {
       const { key, keyCode } = event;
       if (playable && keyCode >= 65 && keyCode <= 90) {
-        // const letter = key;
         letterHandle(key);
       }
     }
@@ -56,10 +52,9 @@ const Main = () => {
     setPlayable(true);
     setCorrectLetters([]);
     setWrongLetters([]);
-    setColor('')
 
-    const random = Math.floor(Math.random() * WORDS.length);
-    selectedWord = WORDS[random].toLowerCase();
+    // const random = Math.floor(Math.random() * WORDS.length);
+    selectedWord = WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
   }
 
   return (
@@ -67,7 +62,12 @@ const Main = () => {
       <Header />
       <Row>
         <Col sm={4}><Figure wrongLetters={wrongLetters} /></Col>
-        <Col sm={8}><Word selectedWord={selectedWord} correctLetters={correctLetters} /></Col>
+        <Col sm={8}>
+          <Word
+            selectedWord={selectedWord}
+            correctLetters={correctLetters}
+          />
+        </Col>
       </Row>
       <Row>
         <Col sm={4}>
@@ -77,8 +77,8 @@ const Main = () => {
                 key={index}
                 letter={letter}
                 letterHandle={letterHandle}
-                color={color}
-
+                correctLetters={correctLetters}
+                wrongLetters={wrongLetters}
               />
             )}
           </div>
@@ -92,8 +92,13 @@ const Main = () => {
         setPlayable={setPlayable}
         playAgain={playAgain}
       />
-      <Button variant="warning" onClick={playAgain}>One Again?? Restart??</Button>
-    </Container>
+      <Button
+        variant="warning"
+        onClick={playAgain}
+      >
+        One Again?? Restart??
+      </Button>
+    </Container >
   )
 }
 
