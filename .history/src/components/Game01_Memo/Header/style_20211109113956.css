@@ -1,0 +1,36 @@
+h1 {
+  padding: 20px;
+  color: #ceffb1;
+  background: #3c217a;
+  text-align: center;
+  font-family: "Russo One", sans-serif;
+}
+
+.sub-header {
+  padding: 5px;
+  color: #ceffb1;
+  font-size: 20px;
+  font-weight: 800;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.button {
+  color: #3c217a;
+  border-radius: 15px;
+  background-color: #ceffb1;
+  margin-bottom: 8px;
+}
+
+.button:hover {
+  color: #ceffb1;
+  background-color: #3c217a;
+}
+/*# sourceMappingURL=style.css.map */
