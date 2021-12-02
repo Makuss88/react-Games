@@ -16,7 +16,9 @@ h1 {
   font-weight: 800;
   justify-content: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .button {
@@ -33,4 +35,8 @@ h1 {
 
 img {
   width: 40px;
+}
+
+.movie {
+  font-size: 30px;
 }

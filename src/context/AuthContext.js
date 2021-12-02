@@ -11,8 +11,10 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState('');
   const [loading, setLoading] = useState(true);
 
-
   const signup = (email, password) => {
+    localStorage.setItem('email', email);
+    const cat = localStorage.getItem('email');
+    console.log(cat)
     const db = app.database().ref("points")
     const user = {
       howMany: {
@@ -25,14 +27,19 @@ export const AuthProvider = ({ children }) => {
     }
     db.push(user)
 
+
     return auth.createUserWithEmailAndPassword(email, password);
   }
 
   const login = (email, password) => {
+    localStorage.setItem('email', email);
+    const cat = localStorage.getItem('email');
+    console.log(cat)
     return auth.signInWithEmailAndPassword(email, password);
   }
 
   const logout = () => {
+    localStorage.clear();
     return auth.signOut();
   }
 

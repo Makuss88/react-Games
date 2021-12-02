@@ -6,6 +6,9 @@ import Card from './Card/Card';
 import Finish from "./Finish/Finish";
 import uniqueCardsArray from './helper/data'
 
+const END_GAME = 1; /////////////////
+const GAMES_ROLES = [17, 22];
+
 const swap = (array, i, j) => {
   const temp = array[i];
   array[i] = array[j];
@@ -25,14 +28,12 @@ const Main = () => {
   const [cards, setCards] = useState(() =>
     shuffleCards(uniqueCardsArray.concat(uniqueCardsArray))
   );
-
+  const [isWin, setIsWin] = useState(false)
   const [openCards, setOpenCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState({});
   const [moves, setMoves] = useState(0);
   const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
-  const [bestScore, setBestScore] = useState(
-    JSON.parse(localStorage.getItem("bestScore")) || 0
-  );
+
   const timeout = useRef(null);
 
   const disable = () => {
@@ -67,26 +68,19 @@ const Main = () => {
     }
   };
 
-  const checkCompletion = useCallback(() => {
-    if (Object.keys(matchedCards).length === uniqueCardsArray.length) {
-      const highScore = Math.min(moves, bestScore);
-      setBestScore(highScore);
-    }
-  }, [bestScore, matchedCards, moves]);
 
   useEffect(() => {
     let timeout = null;
+    if (Object.keys(matchedCards).length === END_GAME) {
+      setIsWin(true)
+    }
     if (openCards.length === 2) {
       timeout = setTimeout(evaluate, 800);
     }
     return () => {
       clearTimeout(timeout);
     };
-  }, [openCards, evaluate]);
-
-  useEffect(() => {
-    checkCompletion();
-  }, [checkCompletion]);
+  }, [openCards, evaluate, matchedCards]);
 
   const checkIsFlipped = (index) => {
     return openCards.includes(index);
@@ -102,22 +96,22 @@ const Main = () => {
     setMatchedCards({});
     setOpenCards([]);
     setMoves(0);
+    setIsWin(false);
   };
 
   return (
     <Container>
       <Header
         moves={moves}
-        bestScore={bestScore}
         handleRestart={handleRestart}
-        points={Object.keys(matchedCards).length}
+        isWin={isWin}
+        GAMES_ROLES={GAMES_ROLES}
       />
       <Row>
         {cards.map((card, index) => {
           return (
             <Col xs={6} md={3} lg={2}>
               <Card
-                key={card.id}
                 card={card}
                 index={index}
                 isDisabled={shouldDisableAllCards}
@@ -129,7 +123,12 @@ const Main = () => {
           );
         })}
       </Row>
-      <Finish points={Object.keys(matchedCards).length} />
+      <Finish
+        moves={moves}
+        handleRestart={handleRestart}
+        isWin={isWin}
+        GAMES_ROLES={GAMES_ROLES}
+        setIsWin={setIsWin} />
     </Container>
   );
 }

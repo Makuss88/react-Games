@@ -15,6 +15,7 @@ import SignUp from './components/mainPages/Home/SignUp';
 import ForgotPass from './components/mainPages/Home/ForgotPass';
 import UpdateProfile from './components/mainPages/Home/UpdateProfile';
 import Main from './components/mainPages/Home/Main';
+
 const App = () => {
   return (
     <div>

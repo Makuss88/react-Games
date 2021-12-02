@@ -1,3 +1,11 @@
+h1 {
+  padding: 20px;
+  color: #ceffb1;
+  background: #3c217a;
+  text-align: center;
+  font-family: "Russo One", sans-serif;
+}
+
 .sub-header {
   padding: 5px;
   color: #ceffb1;
@@ -9,9 +17,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .button {
@@ -28,5 +41,9 @@
 
 img {
   width: 40px;
+}
+
+.movie {
+  font-size: 30px;
 }
 /*# sourceMappingURL=style.css.map */

@@ -7,7 +7,7 @@ import { CardBack, CardFace, CardImg, CardStyle } from "./CardStyled"
 
 import classnames from "classnames";
 
-const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled, key }) => {
+const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled}) => {
   const handleClick = () => {
     !isFlipped && !isDisabled && onClick(index);
   };
@@ -19,7 +19,7 @@ const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled, key }) 
         "is-inactive": isInactive,
       })}
       onClick={handleClick}
-      key={key}
+      key={index}
     >
       <CardBack>
         <CardImg src={card.image} alt="frontpic" />
