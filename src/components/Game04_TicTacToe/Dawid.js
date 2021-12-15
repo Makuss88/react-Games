@@ -31,19 +31,19 @@ const Dawid = () => {
     }
   }
 
-  const dodaj = () => {
+  const addHandler = () => {
     setIleZrobic(ileZrobic + 10);
   }
 
-  const usun = () => {
+  const minusHandler = () => {
     if (ileZrobic >= 10) setIleZrobic(ileZrobic - 10);
   }
 
   return (
     <div>
       <h1>
-        <button style={styleButton} onClick={dodaj}>PIEROGI IN PLUS</button>
-        <button style={styleButton} onClick={usun}>PIEROGI IN MINUS</button>
+        <button style={styleButton} onClick={addHandler}>PIEROGI IN PLUS</button>
+        <button style={styleButton} onClick={minusHandler}>PIEROGI IN MINUS</button>
       </h1>
       <h1>
         <button style={styleButton} onClick={zadanieDawidka}>

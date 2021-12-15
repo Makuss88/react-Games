@@ -1,105 +1,71 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState } from "react";
 
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap'
 
-import Header from './Pages/Header';
-import Figure from './Pages/Figure';
-import Word from './Pages/Word';
-import Popup from './Pages/Popup';
-import WrongLetters from './Pages/WrongLetters';
-import Letter from './Pages/Letter';
+import HeaderGame from "../HeaderGame/HeaderGame";
+import Game from './Game/Game';
+import Finish from './Finish/Finish';
 
-import { WORDS, ALPHABET } from './Pages/helper';
+import { WORDS } from './Game/Pages/helper';
 
-import './HangManStyled.css';
+const GAME_ROLES = [100, 200];
+const GAME_NAME = "HANGMAN"
 
-let selectedWord = WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
+const HangMan = () => {
 
-const Main = () => {
-  const [playable, setPlayable] = useState(true);
+  const [moves, setMoves] = useState(0);
+  const [isWin, setIsWin] = useState(false);
+  const [isStarted, setIsStarted] = useState(false)
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
+  const [word, setWord] = useState('')
 
-  const letterHandle = useCallback((key) => {
-    let letter = key.toLowerCase()
+  const handleStart = () => {
+    setWord(WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase());
+    setIsStarted(true)
+  }
 
-    if (selectedWord.includes(letter)) {
-      if (!correctLetters.includes(letter)) {
-        setCorrectLetters(currentLetters => [...currentLetters, letter]);
-      }
-      return;
-    } else {
-      if (!wrongLetters.includes(letter)) {
-        setWrongLetters(currentLetters => [...currentLetters, letter]);
-      }
-      return;
-    }
-  }, [correctLetters, wrongLetters]);
-
-  useEffect(() => {
-    const handleKeydown = event => {
-      const { key, keyCode } = event;
-      if (playable && keyCode >= 65 && keyCode <= 90) {
-        letterHandle(key);
-      }
-    }
-    window.addEventListener('keydown', handleKeydown);
-
-    return () => window.removeEventListener('keydown', handleKeydown);
-  }, [correctLetters, wrongLetters, playable, letterHandle]);
-
-  function playAgain() {
-    setPlayable(true);
+  const handleRestart = () => {
     setCorrectLetters([]);
     setWrongLetters([]);
-
-    // const random = Math.floor(Math.random() * WORDS.length);
-    selectedWord = WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase();
+    setIsStarted(true);
+    setIsWin(false);
+    setMoves(0);
+    setWord(WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase());
   }
+
 
   return (
     <Container>
-      <Header />
-      <Row>
-        <Col sm={4}><Figure wrongLetters={wrongLetters} /></Col>
-        <Col sm={8}>
-          <Word
-            selectedWord={selectedWord}
-            correctLetters={correctLetters}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col sm={4}>
-          <div className="keyboard">
-            {ALPHABET.map((letter, index) =>
-              <Letter
-                key={index}
-                letter={letter}
-                letterHandle={letterHandle}
-                correctLetters={correctLetters}
-                wrongLetters={wrongLetters}
-              />
-            )}
-          </div>
-        </Col>
-        <Col sm={8}> <WrongLetters wrongLetters={wrongLetters} /> </Col>
-      </Row>
-      <Popup
-        correctLetters={correctLetters}
-        wrongLetters={wrongLetters}
-        selectedWord={selectedWord}
-        setPlayable={setPlayable}
-        playAgain={playAgain}
+      <HeaderGame
+        isStarted={isStarted}
+        handleStart={handleStart}
+        GAME_NAME={GAME_NAME}
+        moves={moves}
+        handleRestart={handleRestart}
+        isWin={isWin}
+        GAME_ROLES={GAME_ROLES}
       />
-      <Button
-        variant="warning"
-        onClick={playAgain}
-      >
-        One Again?? Restart??
-      </Button>
+      <Game
+        word={word}
+        moves={moves}
+        setMoves={setMoves}
+        correctLetters={correctLetters}
+        setCorrectLetters={setCorrectLetters}
+        wrongLetters={wrongLetters}
+        setWrongLetters={setWrongLetters}
+        setIsWin={setIsWin}
+        isStarted={isStarted}
+        handleRestart={handleRestart}
+      />
+      <Finish
+        moves={moves}
+        isWin={isWin}
+        isStarted={isStarted}
+        GAME_ROLES={GAME_ROLES}
+        handleRestart={handleRestart} />
     </Container >
-  )
+  );
 }
 
-export default Main
+export default HangMan;

@@ -1,12 +1,14 @@
-h1 {
+import styled from "styled-components";
+
+export const Text = styled.h1`
   padding: 20px;
   color: #ceffb1;
   background: #3c217a;
   text-align: center;
-  font-family: "Russo One", sans-serif;
-}
+  font-family: "Russo One", sans - serif;
+`;
 
-.sub-header {
+export const SubHeader = styled.div`
   padding: 5px;
   color: #ceffb1;
   font-size: 20px;
@@ -14,7 +16,7 @@ h1 {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  display: -webkit-box;
+  display: -webkit- box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
@@ -25,25 +27,12 @@ h1 {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
+`;
 
-.button {
-  color: #3c217a;
-  border-radius: 15px;
-  background-color: #ceffb1;
-  margin-bottom: 8px;
-}
-
-.button:hover {
-  color: #ceffb1;
-  background-color: #3c217a;
-}
-
-img {
+export const Image = styled.img`
   width: 40px;
-}
+`;
 
-.movie {
+export const Move = styled.div`
   font-size: 30px;
-}
-/*# sourceMappingURL=style.css.map */
+`;

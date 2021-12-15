@@ -28,9 +28,9 @@ const Finish = ({ moves, isWin, GAME_ROLES, handleRestart, isStarted }) => {
   useEffect(() => {
     if (user) {
       let how = {
-        game1: point,
+        game1: user.game2,
         game2: user.game2,
-        game3: user.game3,
+        game3: point,
         game4: user.game4,
       }
       if (isWin) {

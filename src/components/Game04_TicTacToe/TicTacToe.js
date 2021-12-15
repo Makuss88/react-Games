@@ -1,100 +1,47 @@
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
 import { Container } from 'react-bootstrap'
-import { GameBoard, GameInfo } from './Pages/TicTacToeStyled'
-import Board from './Pages/Board';
+import Header from './Pages/Header';
+import Game from './Pages/Game';
+import Popup from './Pages/Popup';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'JUMP':
-      return {
-        ...state,
-        xIsNext: action.payload.step % 2 === 0,
-        history: state.history.slice(0, action.payload.step + 1),
-      };
-    case 'MOVE':
-      return {
-        ...state,
-        history: state.history.concat({
-          squares: action.payload.squares,
-        }),
-        xIsNext: !state.xIsNext,
-      };
-    default:
-      return state;
-  }
-};
 
-const calculateWinner = (squares) => {
-  const winnerLines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  let isDraw = true;
-  for (let i = 0; i < winnerLines.length; i++) {
-    const [a, b, c] = winnerLines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
-      return squares[a];
-    }
-    if (!squares[a] || !squares[b] || !squares[c]) {
-      isDraw = false;
-    }
-  }
-  if (isDraw) return 'D';
-  return null;
-};
+const GAMES_ROLES = [3, 5]
 
 const TicTacToe = () => {
-  const [state, dispatch] = useReducer(reducer, {
-    xIsNext: true,
-    history: [{ squares: Array(9).fill(null) }],
-  });
-  const { xIsNext, history } = state;
-  const jumpTo = (step) => {
-    dispatch({ type: 'JUMP', payload: { step } });
-  };
-  const handleClick = (i) => {
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    const winner = calculateWinner(squares);
-    if (winner || squares[i]) {
-      return;
-    }
-    squares[i] = xIsNext ? 'X' : 'O';
-    dispatch({ type: 'MOVE', payload: { squares } });
-  };
-  const current = history[history.length - 1];
-  const winner = calculateWinner(current.squares);
 
-  const status = winner
-    ? winner === 'D'
-      ? 'Draw'
-      : 'Winner is ' + winner
-    : 'Next player is ' + (xIsNext ? 'X' : 'O');
+  const [square, setSquare] = useState(Array(9).fill(null))
+  const [moves, setMoves] = useState(0)
+  const [isWin, setIsWin] = useState(false)
+  const [whoWon, setWhoWon] = useState('')
 
-  const moves = history.map((step, move) => {
-    const desc = move ? 'Go to #' + move : 'Start the Game';
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
-      </li>
-    );
-  });
+  const handleRestart = () => {
+    setSquare(Array(9).fill(null))
+    setMoves(0)
+    setIsWin(false)
+    setWhoWon('')
+  }
 
   return (
     <Container>
-      <GameBoard>
-        <Board onClick={(i) => handleClick(i)} squares={current.squares} />
-      </GameBoard>
-      <GameInfo>
-        <div>{status}</div>
-        <div>{moves}</div>
-      </GameInfo>
+      <Header
+        moves={moves}
+        handleRestart={handleRestart}
+        isWin={isWin}
+        GAMES_ROLES={GAMES_ROLES}
+      />
+      <Game
+        square={square}
+        setSquare={setSquare}
+        moves={moves}
+        setMoves={setMoves}
+        setIsWin={setIsWin}
+        setWhoWon={setWhoWon}
+      />
+      <Popup
+        whoWon={whoWon}
+        handleRestart={handleRestart}
+        isWin={isWin}
+      />
     </Container>
   )
 }

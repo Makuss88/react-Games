@@ -13,3 +13,4 @@ export const DivComponent = styled.div`
   text-align: center;
   padding: 50px;
 `;
+
