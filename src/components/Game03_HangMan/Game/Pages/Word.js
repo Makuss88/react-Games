@@ -3,7 +3,7 @@ import React from 'react';
 const Word = ({ word, correctLetters }) => {
   return (
     <div className="word">
-      <h1>ZGADNIJ HASELKO!!</h1>
+      <h1>MAGIC IT'S WORD!</h1>
       <div className="word-change">
         {
           word.split('').map((letter, i) => {

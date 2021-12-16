@@ -5,10 +5,11 @@ import { Container } from 'react-bootstrap'
 import HeaderGame from "../HeaderGame/HeaderGame";
 import Game from './Game/Game';
 import Finish from './Finish/Finish';
+import Popup from './Game/Pages/Popup.js'
 
 import { WORDS } from './Game/Pages/helper';
 
-const GAME_ROLES = [100, 200];
+const GAME_ROLES = [3, 5];
 const GAME_NAME = "HANGMAN"
 
 const HangMan = () => {
@@ -19,27 +20,23 @@ const HangMan = () => {
   const [correctLetters, setCorrectLetters] = useState([]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const [word, setWord] = useState('')
-
-  const handleStart = () => {
-    setWord(WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase());
-    setIsStarted(true)
-  }
+  const [isWrongWin, setIsWrongWin] = useState(false)
 
   const handleRestart = () => {
+    setMoves(0);
     setCorrectLetters([]);
     setWrongLetters([]);
     setIsStarted(true);
     setIsWin(false);
-    setMoves(0);
+    setIsWrongWin(false);
     setWord(WORDS[Math.floor(Math.random() * WORDS.length)].toLowerCase());
   }
-
 
   return (
     <Container>
       <HeaderGame
         isStarted={isStarted}
-        handleStart={handleStart}
+        handleStart={handleRestart}
         GAME_NAME={GAME_NAME}
         moves={moves}
         handleRestart={handleRestart}
@@ -57,13 +54,16 @@ const HangMan = () => {
         setIsWin={setIsWin}
         isStarted={isStarted}
         handleRestart={handleRestart}
+        setIsWrongWin={setIsWrongWin}
       />
       <Finish
-        moves={moves}
+        moves={wrongLetters.length}
         isWin={isWin}
         isStarted={isStarted}
         GAME_ROLES={GAME_ROLES}
-        handleRestart={handleRestart} />
+        handleRestart={handleRestart}
+      />
+      {isWrongWin ? <Popup word={word} handleRestart={handleRestart} /> : null}
     </Container >
   );
 }
