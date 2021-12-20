@@ -19,13 +19,11 @@ const usePostDB = () => {
               howMany: howMany
             }, (error) => {
               if (error) {
-                console.log("dupa  post")
-              } else {
-                console.log("udało sie")
+                console.error("dupa  post")
               }
             });
           }
-          
+
         }
       });
     } catch (err) {

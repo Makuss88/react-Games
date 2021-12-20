@@ -7,7 +7,7 @@ import Finish from "./Finish/Finish";
 
 import { uniqueCardsArray, shuffleCards } from './Game/helper/helper';
 
-const END_GAME = 1;
+const END_GAME = 9;
 const GAME_ROLES = [17, 22];
 const GAME_NAME = "MEMO"
 

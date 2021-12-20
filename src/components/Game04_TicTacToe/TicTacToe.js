@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Container } from 'react-bootstrap'
-import Header from './Pages/Header';
+import HeaderGame from '../HeaderGame/HeaderGame';
+import Finish from './Finish/Finish';
 import Game from './Pages/Game';
 import Popup from './Pages/Popup';
 
-
-const GAMES_ROLES = [3, 5]
+const GAME_NAME = "TIC TAC TOE"
+const GAME_ROLES = [3, 5]
 
 const TicTacToe = () => {
 
@@ -13,6 +14,11 @@ const TicTacToe = () => {
   const [moves, setMoves] = useState(0)
   const [isWin, setIsWin] = useState(false)
   const [whoWon, setWhoWon] = useState('')
+  const [isStarted, setIsStarted] = useState(false)
+
+  const handleStart = () => {
+    setIsStarted(true);
+  }
 
   const handleRestart = () => {
     setSquare(Array(9).fill(null))
@@ -23,11 +29,15 @@ const TicTacToe = () => {
 
   return (
     <Container>
-      <Header
+      <HeaderGame
+        isStarted={isStarted}
+        setIsStarted={setIsStarted}
+        GAME_NAME={GAME_NAME}
         moves={moves}
+        handleStart={handleStart}
         handleRestart={handleRestart}
         isWin={isWin}
-        GAMES_ROLES={GAMES_ROLES}
+        GAME_ROLES={GAME_ROLES}
       />
       <Game
         square={square}
@@ -35,13 +45,19 @@ const TicTacToe = () => {
         moves={moves}
         setMoves={setMoves}
         setIsWin={setIsWin}
+        whoWon={whoWon}
         setWhoWon={setWhoWon}
       />
-      <Popup
-        whoWon={whoWon}
-        handleRestart={handleRestart}
-        isWin={isWin}
-      />
+      {whoWon === "Wygrał: X" &&
+        <Finish
+          moves={moves}
+          isWin={isWin}
+          isStarted={isStarted}
+          GAME_ROLES={GAME_ROLES}
+          handleRestart={handleRestart}
+        />
+      }
+      {whoWon === "Wygrał: O" || whoWon === "REMISIK" ? <Popup whoWon={whoWon} handleRestart={handleRestart} /> : null}
     </Container>
   )
 }

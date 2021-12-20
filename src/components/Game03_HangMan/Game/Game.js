@@ -23,12 +23,10 @@ const Game = ({
 }) => {
 
   const letterHandle = useCallback((key) => {
-
     let letter = key.toLowerCase()
 
     if (word.includes(letter)) {
       if (!correctLetters.includes(letter)) {
-
         setCorrectLetters(currentLetters => [...currentLetters, letter]);
       }
       return;
