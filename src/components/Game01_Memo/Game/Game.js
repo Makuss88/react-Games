@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useCallback } from 'react'
-import { Col, Row } from "react-bootstrap";
+import { DivStyled } from './Card/CardStyled';
+import { Col } from "react-bootstrap";
 import Card from './Card/Card';
 
 const Game = ({
@@ -71,23 +72,21 @@ const Game = ({
     return Boolean(matchedCards[card.type]);
   };
   return (
-    <Row>
+    <DivStyled>
       {cards.map((card, index) => {
         return (
-          <Col key={index} xs={6} md={3} lg={2}>
-            <Card
-              key={index}
-              card={card}
-              index={index}
-              isDisabled={shouldDisableAllCards}
-              isInactive={checkIsInactive(card)}
-              isFlipped={checkIsFlipped(index)}
-              onClick={handleCardClick}
-            />
-          </Col>
+          <Card
+            key={index}
+            card={card}
+            index={index}
+            isDisabled={shouldDisableAllCards}
+            isInactive={checkIsInactive(card)}
+            isFlipped={checkIsFlipped(index)}
+            onClick={handleCardClick}
+          />
         );
       })}
-    </Row>
+    </DivStyled>
   )
 }
 

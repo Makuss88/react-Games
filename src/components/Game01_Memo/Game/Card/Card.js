@@ -7,7 +7,7 @@ import { CardBack, CardFace, CardImg, CardStyle } from "./CardStyled"
 
 import classnames from "classnames";
 
-const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled}) => {
+const Card = ({ onClick, card, index, isInactive, isFlipped, isDisabled }) => {
   const handleClick = () => {
     !isFlipped && !isDisabled && onClick(index);
   };

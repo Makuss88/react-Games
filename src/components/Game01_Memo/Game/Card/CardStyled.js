@@ -5,9 +5,15 @@ export const CardStyle = styled.div`
   height: 200px;
   transition: 0.8s;
   transform-style: preserve-3d;
-  position: relative;
   cursor: pointer;
   margin-bottom: 20px;
+
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
 `
 
 export const CardImg = styled.img`
@@ -15,7 +21,6 @@ export const CardImg = styled.img`
   height: 100%;
   border: 4px solid gray;
   border-radius: 4px;
- 
 `;
 
 export const CardFace = styled(CardStyle)`
@@ -25,4 +30,11 @@ export const CardFace = styled(CardStyle)`
 
 export const CardBack = styled(CardStyle)`
   transform: rotateY(180deg);
+`;
+
+export const DivStyled = styled.div`
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+
 `;

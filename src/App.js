@@ -10,7 +10,6 @@ import TicTacToe from './components/Game04_TicTacToe/TicTacToe';
 
 import Dashboard from './components/mainPages/Home/Dashboard';
 import Login from './components/mainPages/Home/Login';
-// import PrivateRoute from './components/mainPages/Home/PrivateRoute';
 import SignUp from './components/mainPages/Home/SignUp';
 import ForgotPass from './components/mainPages/Home/ForgotPass';
 import UpdateProfile from './components/mainPages/Home/UpdateProfile';

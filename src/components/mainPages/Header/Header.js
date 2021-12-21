@@ -14,7 +14,7 @@ const Header = () => {
   }
 
   return (
-    <NavStyled variant="pills">
+    <NavStyled>
       <Burger />
       <User>
         {currentUser ?

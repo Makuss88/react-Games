@@ -10,16 +10,14 @@ const Img = styled.img`
   padding-bottom: 10px;
 `;
 
-
 export const STAR_COMPONENT = ({ isWin, moves, GAME_ROLES, isStarted }) => {
   const [star, setStar] = useState('');
   const iconGood = useMemo(() => {
     return <Img src={icon2} alt="goodIcon" />
-  }, [])
+  }, []);
   const iconBad = useMemo(() => {
     return <Img src={icon1} alt="badIcon" />
-  }, [])
-
+  }, []);
 
   useEffect(() => {
     if (isWin && isStarted) {

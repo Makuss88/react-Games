@@ -5,12 +5,11 @@ import { FaUserAltSlash } from 'react-icons/fa';
 import { device } from '../../../assets/device';
 
 export const NavStyled = styled.nav`
-  width: 100vw;
+  width: 100%;
   height: 80px;
   display: flex;
   justify-content: space-between;
   background-color: rgb(184, 184, 184);
-  border-radius: 15px;
 
   @media (max-width: 768px) {
     flex-flow: column nowrap;
@@ -22,9 +21,10 @@ export const NavStyledRight = styled.ul`
   display: flex;
   flex-flow: row nowrap;
 
+
   @media (max-width: 768px) {
     flex-flow: column nowrap;
-    background-color: blue;
+    background-color: #6336c9;
     position: fixed;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;
@@ -32,6 +32,7 @@ export const NavStyledRight = styled.ul`
     height: 100vh;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
+    z-index: 999;
   }
 `;
 
@@ -45,30 +46,30 @@ export const LinkElem = styled(NavLink)`
   
 
   &.active {
-    background: blue;
-    color: white;
+    background: #6336c9;
+    color: rgb(184, 184, 184);
     border-radius: 15px;
   }
 
   &:hover {
-    background: blue;
-    color: white;
+    background: #6336c9;
+    color: rgb(184, 184, 184);
     border-radius: 15px;
   }
 
   @media (max-width: 768px) {
-    color: white;
+    color: rgb(184, 184, 184);
     margin-top: 10px;
    
     &.active {
-      background: white;
-      color: blue;
+      background: rgb(184, 184, 184);
+      color: #6336c9;
       border-radius: 15px;
     }
 
     &:hover {
-      background: white;
-      color: blue;
+      background: rgb(184, 184, 184);
+      color: #6336c9;
       border-radius: 15px;
     }
   }
@@ -93,23 +94,23 @@ export const UserFa = styled(FaUserAltSlash)`
 export const StyledBurger = styled.div`
   width: 2rem;
   height: 2rem;
-  position: fixed;
+  position: ${({ open }) => open ? 'fixed' : 'absolute'};
   top: 20px;
   right: 120px;
   display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
-  z-index: 20;
-  display: none;
+  z-index: -1;
 
   @media(max-width: 768px){
     display:flex;
+    z-index: 9999;
   }
 
   div {
     width: 2rem;
     height: 0.25rem;
-    background-color: ${({ open }) => open ? 'white' : 'blue'};
+    background-color: ${({ open }) => open ? 'rgb(184, 184, 184)' : 'blue'};
     border-radius: 10px;
     transform-origin: 1px;
     transition: all 0.3s ease;

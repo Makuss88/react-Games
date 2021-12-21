@@ -3,7 +3,7 @@ body {
   padding: 0;
   width: 100%;
   background-image: url(components/images/bg.jpg);
-  background-size: 100%;
+  background-size: auto;
 }
 
 h1 {
