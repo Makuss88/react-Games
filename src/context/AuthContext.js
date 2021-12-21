@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
     }
     db.push(user)
 
-
     return auth.createUserWithEmailAndPassword(email, password);
   }
 

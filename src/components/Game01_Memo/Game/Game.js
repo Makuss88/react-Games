@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react'
 import { DivStyled } from './Card/CardStyled';
-import { Col } from "react-bootstrap";
 import Card from './Card/Card';
 
 const Game = ({

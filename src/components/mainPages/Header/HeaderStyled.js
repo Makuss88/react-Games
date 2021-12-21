@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { NavLink } from 'react-router-dom';
 import { FaUserAltSlash } from 'react-icons/fa';
-import { device } from '../../../assets/device';
+// import { device } from '../../../assets/device';
 
 export const NavStyled = styled.nav`
   width: 100%;
