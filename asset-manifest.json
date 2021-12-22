@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Makuss88/react-Games/static/css/main.18963f8c.chunk.css",
-    "main.js": "/Makuss88/react-Games/static/js/main.04ef3266.chunk.js",
-    "main.js.map": "/Makuss88/react-Games/static/js/main.04ef3266.chunk.js.map",
+    "main.js": "/Makuss88/react-Games/static/js/main.3e955512.chunk.js",
+    "main.js.map": "/Makuss88/react-Games/static/js/main.3e955512.chunk.js.map",
     "runtime-main.js": "/Makuss88/react-Games/static/js/runtime-main.1b350080.js",
     "runtime-main.js.map": "/Makuss88/react-Games/static/js/runtime-main.1b350080.js.map",
     "static/css/2.0a9ec390.chunk.css": "/Makuss88/react-Games/static/css/2.0a9ec390.chunk.css",
@@ -30,6 +30,6 @@
     "static/css/2.0a9ec390.chunk.css",
     "static/js/2.4fd23242.chunk.js",
     "static/css/main.18963f8c.chunk.css",
-    "static/js/main.04ef3266.chunk.js"
+    "static/js/main.3e955512.chunk.js"
   ]
 }
