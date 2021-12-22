@@ -22,7 +22,7 @@ const App = () => {
       <Switch>
         <Route path='/' exact component={Main} />
         <Route path="/slider" component={Slider} />
-        <Route path="/memo" component={Memo} />
+        <Route path={process.env.PUBLIC_URL + '/memo'} component={Memo} />
         <Route path="/hangman" component={HangMan} />
         <Route path="/tictactoe" component={TicTacToe} />
         <Route path='/dashboard' component={Dashboard} />

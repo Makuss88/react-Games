@@ -1,4 +1,5 @@
 {
+  "homepage": "https://github.com/Makuss88/react-Games",
   "name": "game",
   "version": "0.1.0",
   "private": true,
@@ -20,8 +21,7 @@
     "react-scripts": "4.0.3",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.3",
-    "web-vitals": "^1.1.2",
-    "homepage": "https://github.com/Makuss88/react-Games"
+    "web-vitals": "^1.1.2"    
   },
   "scripts": {
     "predeploy": "npm run build",
