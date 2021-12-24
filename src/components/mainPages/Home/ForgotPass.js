@@ -51,7 +51,7 @@ const ForgotPass = () => {
           </Card.Body>
         </Card>
         <div className='w-100 text-center mt-2' style={{ background: 'white', padding: "10px" }}>
-          Need an account? <Link to="/ForgotPass">Sign UP!</Link>
+          Need an account? <Link to="/signup">Sign UP!</Link>
         </div>
       </div>
     </Container>
