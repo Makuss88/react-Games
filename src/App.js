@@ -17,12 +17,12 @@ import Main from './components/mainPages/Home/Main';
 
 const App = () => {
   return (
-    <div>
+    <>
       <Header />
       <Switch>
         <Route path='/' exact component={Main} />
         <Route path="/slider" component={Slider} />
-        <Route path={process.env.PUBLIC_URL + '/memo'} component={Memo} />
+        <Route path='/memo' component={Memo} />
         <Route path="/hangman" component={HangMan} />
         <Route path="/tictactoe" component={TicTacToe} />
         <Route path='/dashboard' component={Dashboard} />
@@ -30,9 +30,8 @@ const App = () => {
         <Route path='/signup' component={SignUp} />
         <Route path='/update-profile' component={UpdateProfile} />
         <Route path='/forgot-password' component={ForgotPass} />
-        {/* <PrivateRoute exact path="/" component={Main} /> */}
       </Switch>
-    </div>
+    </>
   );
 }
 
